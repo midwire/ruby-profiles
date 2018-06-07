@@ -5,12 +5,12 @@ require 'lib/midwire'
 include Midwire
 
 MAX = 100000
+results = []
 
 ##################################################
 # case vs if-elsif
 
-# BEGIN case_when
-Profiler.time_this("case when using strings") {
+results << Profiler.time_this("case when using strings") {
   MAX.times do |i|
     x = "5"
     case x
@@ -37,10 +37,8 @@ Profiler.time_this("case when using strings") {
     end
   end
 }
-# END case_when
 
-# BEGIN if_elsif_else
-Profiler.time_this("if elsif else using strings") {
+results << Profiler.time_this("if elsif else using strings") {
   MAX.times do |i|
     x = "5"
     if x == "1"
@@ -68,11 +66,8 @@ Profiler.time_this("if elsif else using strings") {
     end
   end
 }
-# BEGIN if_elsif_else
 
-
-# BEGIN case_when_integers
-Profiler.time_this("case when using integers") {
+results << Profiler.time_this("case when using integers") {
   MAX.times do |i|
     x = 5
     case x
@@ -99,10 +94,36 @@ Profiler.time_this("case when using integers") {
     end
   end
 }
-# END case_when_integers
 
-# BEGIN if_elsif_else_integers
-Profiler.time_this("if elsif else using integers") {
+results << Profiler.time_this("case when using symbols") {
+  MAX.times do |i|
+    x = :five
+    case x
+    when :one
+      myvar = "it is #{x}"
+    when :two
+      myvar = "it is #{x}"
+    when :three
+      myvar = "it is #{x}"
+    when :four
+      myvar = "it is #{x}"
+    when :five
+      myvar = "it is #{x}"
+    when :six
+      myvar = "it is #{x}"
+    when :seven
+      myvar = "it is #{x}"
+    when :eight
+      myvar = "it is #{x}"
+    when :nine
+      myvar = "it is #{x}"
+    when :ten
+      myvar = "it is #{x}"
+    end
+  end
+}
+
+results << Profiler.time_this("if elsif else using integers") {
   MAX.times do |i|
     x = 5
     if x == 1
@@ -130,10 +151,8 @@ Profiler.time_this("if elsif else using integers") {
     end
   end
 }
-# BEGIN if_elsif_else_integers
 
-# BEGIN if_elsif_else_integers2
-Profiler.time_this("if elsif else using integers with ===") {
+results << Profiler.time_this("if elsif else using integers with ===") {
   MAX.times do |i|
     x = 5
     if x === 1
@@ -161,4 +180,5 @@ Profiler.time_this("if elsif else using integers with ===") {
     end
   end
 }
-# BEGIN if_elsif_else_integers2
+
+print_results(results)

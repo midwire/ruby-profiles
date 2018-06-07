@@ -13,7 +13,8 @@ module Midwire
         result = RubyProf.stop
         puts "\nTimings for [#{comment}]"
         printer = RubyProf::FlatPrinter.new(result)
-        printer.print(STDOUT, 0)
+        printer.print(STDOUT)
+        { comment => result }
       end
     end
 
@@ -31,5 +32,5 @@ module Midwire
       printer.print(file, :min_percent => 2)
     end
   end
-  
+
 end

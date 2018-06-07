@@ -7,49 +7,51 @@ require 'lib/midwire'
 include Midwire
 
 MAX = 100000
+results = []
 
 ##################################################
 # Quoted Strings
 
-Profiler.time_this("Single Quotes (+ operator at end):") {
+results << Profiler.time_this("Single Quotes (+ operator at end):") {
   x = ''
   (0..MAX).each do |i|
     x = 'This is a test ' + i.to_s
   end
 }
 
-Profiler.time_this("Single Quotes (+ operator in middle):") {
+results << Profiler.time_this("Single Quotes (+ operator in middle):") {
   x = ''
   (0..MAX).each do |i|
     x = 'This is a test ' + i.to_s + 'x'
   end
 }
 
-Profiler.time_this("Single Quotes (<< operator at end):") {
+results << Profiler.time_this("Single Quotes (<< operator at end):") {
   x = ''
   (0..MAX).each do |i|
     x = 'This is a test ' << i.to_s
   end
 }
 
-# Very slow
-Profiler.time_this("Single Quotes: (<< operator in middle)") {
+results << Profiler.time_this("Single Quotes: (<< operator in middle)") {
   x = ''
   (0..MAX).each do |i|
     x = 'This is a test ' << i.to_s << 'x'
   end
 }
 
-Profiler.time_this("Double Quotes (interpolation at end):") {
+results << Profiler.time_this("Double Quotes (interpolation at end):") {
   x = ""
   (0..MAX).each do |i|
     x = "This is a test #{i}"
   end
 }
 
-Profiler.time_this("Double Quotes (interpolation in middle):") {
+results << Profiler.time_this("Double Quotes (interpolation in middle):") {
   x = ""
   (0..MAX).each do |i|
     x = "This is a test #{i}x"
   end
 }
+
+print_results(results)

@@ -5,11 +5,12 @@ require 'lib/midwire'
 include Midwire
 
 MAX = 500000
+results = []
 
 ##################################################
 # Dramatic Inside vs. Outside loop instantiation
 
-Profiler.time_this("for x in Collection with outside instantiation") {
+results << Profiler.time_this("for x in Collection with outside instantiation") {
   x = 0
   hash = Hash.new
   for i in (0..MAX)
@@ -18,10 +19,12 @@ Profiler.time_this("for x in Collection with outside instantiation") {
   end
 }
 
-Profiler.time_this("for x in Collection with inside instantiation") {
+results << Profiler.time_this("for x in Collection with inside instantiation") {
   for i in (0..MAX)
     x = i * i
     hash = Hash.new
     hash[i] = x
   end
 }
+
+print_results(results)
