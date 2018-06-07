@@ -22,6 +22,10 @@ Otherwise:
     $ bundle exec ./loop_constructs.rb
     $ bundle exec ./loop_instantiations.rb
 
+## Ruby Versions
+
+Currently `.ruby-version` is set to 2.5.1. If you want to try a different version, just install it and set the version you want in that file.
+
 # Overview
 
 The profiler (ruby-prof) will print out the results for each block, then after collecting each set of results, it will sort them from fastest to slowest and print out the sorted list.
